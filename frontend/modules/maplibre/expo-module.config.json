@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android", "web"],
+  "apple": {
+    "modules": ["MaplibreModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.maplibre.MaplibreModule"]
+  }
+}
