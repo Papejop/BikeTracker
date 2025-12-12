@@ -4,9 +4,13 @@ async function refreshToken()
 {
     const url =  'http://10.0.2.2:8000/api/token/refresh';
     try  {
-        const response = awaut fetch(url);
+        const response = await fetch(url);
         if (!response.ok) {
             
         }
+    }
+    catch
+    {
+    
     }
 }
