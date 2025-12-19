@@ -58,13 +58,15 @@ def access_temporary_share_location_link(request, token):
 
 @csrf_exempt
 @api_view(['POST'])
-def recive_location(request):
+def send_location(request):
     serializer = LocationSerializer(data=request.data)
 
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.data, status=400)
+
+
     
     
 

@@ -57,7 +57,7 @@ export default function ExampleMap() {
       <View style = {styles.buttonContainer}>
         <Pressable 
           style = {styles.locationButton}
-          onPress={addLocationFunction}>
+          onPress={() => addLocation(1 ,2 ,"3" , Date.now())}>
           <Text> 
             add location 
           </Text>
@@ -68,9 +68,33 @@ export default function ExampleMap() {
   );
 }
 
-const addLocationFunction = () => {
-  return
-}
+const addLocation = async (lng: number, lat : number, user: string, ts : number) => {
+  try {
+    const kek = new Date(ts).toISOString();
+    const response = await fetch('http://10.0.2.2:8000/api/locations/recieve_location/', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      longitude: lng,
+      latitude: lat,
+      timestamp: kek,
+      username: user, 
+    }),
+  });
+
+  const json = await response.json()
+  if(!response.ok){
+    console.error("failed to send data", json);
+    return
+  }
+
+  } catch (error) {
+    console.error("somthing weng wrong uwu", error);
+  }
+};
 
 const styles = StyleSheet.create({
   centerDot: {
